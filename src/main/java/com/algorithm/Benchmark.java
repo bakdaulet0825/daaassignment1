@@ -48,18 +48,15 @@ public class Benchmark {
             }
             long endTime = System.nanoTime();
 
-            // Замер времени в миллисекундах с точностью до дробных
             times[r] = (endTime - startTime) / 1_000_000.0;
             comparisons[r] = metrics.getComparisons();
             depths[r] = metrics.getMaxDepth();
         }
 
-        // Поиск медианного запуска по времени (позволяет сохранить метрики одного и того же прогона)
         Integer[] indices = {0, 1, 2, 3, 4};
         Arrays.sort(indices, (a, b) -> Double.compare(times[a], times[b]));
         int medianIdx = indices[RUNS / 2];
 
-        // Используем Locale.US для вывода точки в дробных числах
         writer.printf(Locale.US, "%s,%s,%d,%.2f,%d,%d\n",
                 algo, inputType, n, times[medianIdx], comparisons[medianIdx], depths[medianIdx]);
     }

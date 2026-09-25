@@ -1,14 +1,11 @@
 package com.algorithm;
-
 public class MergeSort {
     private static final int CUTOFF = 15;
-
     public static void sort(int[] a, Metrics metrics) {
         if (a == null || a.length <= 1) return;
         int[] buffer = new int[a.length]; // Reusable buffer
         sort(a, buffer, 0, a.length - 1, metrics);
     }
-
     private static void sort(int[] a, int[] buffer, int low, int high, Metrics metrics) {
         metrics.enterRecursion();
         try {
@@ -16,7 +13,6 @@ public class MergeSort {
                 insertionSort(a, low, high, metrics);
                 return;
             }
-
             int mid = low + (high - low) / 2;
             sort(a, buffer, low, mid, metrics);
             sort(a, buffer, mid + 1, high, metrics);
@@ -25,10 +21,8 @@ public class MergeSort {
             metrics.exitRecursion();
         }
     }
-
     private static void merge(int[] a, int[] buffer, int low, int mid, int high, Metrics metrics) {
         System.arraycopy(a, low, buffer, low, high - low + 1);
-
         int i = low, j = mid + 1;
         for (int k = low; k <= high; k++) {
             if (i > mid) {
@@ -45,7 +39,6 @@ public class MergeSort {
             }
         }
     }
-
     private static void insertionSort(int[] a, int low, int high, Metrics metrics) {
         for (int i = low + 1; i <= high; i++) {
             int key = a[i];

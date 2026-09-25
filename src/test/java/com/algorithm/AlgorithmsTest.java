@@ -1,13 +1,9 @@
 package com.algorithm;
-
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 public class AlgorithmsTest {
-
     @Test
     void testMergeSortCorrectness() {
         Random rnd = new Random();
@@ -20,7 +16,6 @@ public class AlgorithmsTest {
             assertArrayEquals(a1, a2);
         }
     }
-
     @Test
     void testQuickSortCorrectnessAndDepth() {
         Random rnd = new Random();
@@ -32,19 +27,15 @@ public class AlgorithmsTest {
             QuickSort.sort(a2, metrics);
             assertArrayEquals(a1, a2);
         }
-
         int n = 100_000;
         int[] sorted = new int[n];
         for (int i = 0; i < n; i++) sorted[i] = i;
-
         metrics.reset();
         QuickSort.sort(sorted, metrics);
-
         double maxAllowedDepth = 2 * (Math.log(n) / Math.log(2));
         assertTrue(metrics.getMaxDepth() <= maxAllowedDepth,
                 "Depth " + metrics.getMaxDepth() + " exceeded limit " + maxAllowedDepth);
     }
-
     @Test
     void testQuickSelectCorrectness() {
         Random rnd = new Random();
@@ -54,13 +45,11 @@ public class AlgorithmsTest {
             int k = rnd.nextInt(100);
             int[] sorted = a.clone();
             Arrays.sort(sorted);
-
             int expected = sorted[k];
             int actual = QuickSelect.select(a.clone(), k, metrics);
             assertEquals(expected, actual);
         }
     }
-
     @Test
     void testQuickSelectExceptions() {
         Metrics metrics = new Metrics();
